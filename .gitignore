@@ -2,4 +2,4 @@
 /prisma/seedData
 /prisma/migrations
 /prisma/seed.ts
-.env
+/.env
