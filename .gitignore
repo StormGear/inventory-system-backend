@@ -1,0 +1,4 @@
+/node_modules
+/prisma/seedData
+/prisma/migrations
+/prisma/seed.ts
