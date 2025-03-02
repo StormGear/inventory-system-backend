@@ -12,7 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDashboardMetrics = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const getDashboardMetrics = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+/**
+ * @swagger
+ *
+ * /dashboard:
+ *   get:
+ *     description: Get dashboard metrics
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Error getting dashboard metrics
+ */
+const getDashboardMetrics = (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const popularProducts = yield prisma.products.findMany({
             take: 5,
@@ -45,6 +59,13 @@ const getDashboardMetrics = (req, res) => __awaiter(void 0, void 0, void 0, func
             }
         });
         const expenseByCategory = expenseByCategorySummaryRaw.map((item) => (Object.assign(Object.assign({}, item), { amount: item.amount.toString() })));
+        res.status(200).json({
+            popularProducts,
+            salesSummary,
+            purchaseSummary,
+            expenseSummary,
+            expenseByCategory
+        });
     }
     catch (error) {
         res.status(500).json({ message: "Error getting dashboard metrics" });

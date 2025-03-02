@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "v1.0.0",
+        "title": "Inventory Management System API",
+        "description": "This is the API for an inventory management system",
+        "contact": {
+            "name": "Papa Kofi",
+            "url": "https://github.com/StormGear",
+            "email": "papakofiboahen@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "localserver"
+        }
+    ],
+    "paths": {
+        "/dashboard": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Endpoint to get dashboard metrics",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Add new user.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

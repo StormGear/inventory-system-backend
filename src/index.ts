@@ -6,6 +6,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import dashboardRoutes from "./routes/dashboardRoutes";
+// import swaggerOutput from "../swagger_output.json";
 
 const options = {
   definition: {
@@ -27,7 +29,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"],
+  apis: ["**/*.ts"]
 };
 
 const specs = swaggerJsdoc(options);
@@ -51,10 +53,10 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+
 // ROUTES
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/dashboard", dashboardRoutes);
 
 
 // SERVER

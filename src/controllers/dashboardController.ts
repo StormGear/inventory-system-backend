@@ -3,7 +3,21 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const getDashboardMetrics = async (req: Request, res: Response): Promise<void> => {
+/**
+ * @swagger
+ *
+ * /dashboard:
+ *   get:
+ *     description: Get dashboard metrics
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Error getting dashboard metrics
+ */
+export const getDashboardMetrics = async (_: Request, res: Response): Promise<void> => {
     try {
         const popularProducts = await prisma.products.findMany({
             take: 5,
@@ -39,6 +53,13 @@ export const getDashboardMetrics = async (req: Request, res: Response): Promise<
             ...item,
             amount: item.amount.toString()
         }))
+        res.status(200).json({
+            popularProducts,
+            salesSummary,
+            purchaseSummary,
+            expenseSummary,
+            expenseByCategory
+        });
 
         
 
