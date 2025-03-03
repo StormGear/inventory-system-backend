@@ -29,6 +29,11 @@ const options = {
         servers: [
             {
                 url: "http://localhost:8000",
+                description: "Development server",
+            },
+            {
+                url: "https://inventory-system-backend-i5xg.onrender.com",
+                description: "Production server",
             },
         ],
     },

@@ -92,7 +92,7 @@ export const getDashboardMetrics = async (_: Request, res: Response): Promise<vo
                 date: 'desc'
             }
         })
-        const expenseByCategory = expenseByCategorySummaryRaw.map((item) => ({
+        const expenseByCategorySummary = expenseByCategorySummaryRaw.map((item) => ({
             ...item,
             amount: item.amount.toString()
         }))
@@ -101,7 +101,7 @@ export const getDashboardMetrics = async (_: Request, res: Response): Promise<vo
             salesSummary,
             purchaseSummary,
             expenseSummary,
-            expenseByCategory
+            expenseByCategorySummary
         });
 
         

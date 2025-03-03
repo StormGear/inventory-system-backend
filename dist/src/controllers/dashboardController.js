@@ -99,13 +99,13 @@ const getDashboardMetrics = (_, res) => __awaiter(void 0, void 0, void 0, functi
                 date: 'desc'
             }
         });
-        const expenseByCategory = expenseByCategorySummaryRaw.map((item) => (Object.assign(Object.assign({}, item), { amount: item.amount.toString() })));
+        const expenseByCategorySummary = expenseByCategorySummaryRaw.map((item) => (Object.assign(Object.assign({}, item), { amount: item.amount.toString() })));
         res.status(200).json({
             popularProducts,
             salesSummary,
             purchaseSummary,
             expenseSummary,
-            expenseByCategory
+            expenseByCategorySummary
         });
     }
     catch (error) {
