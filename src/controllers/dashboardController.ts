@@ -3,11 +3,54 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+// /**
+//  * @swagger
+//  * components:
+//  *   schemas:
+//  *     Book:
+//  *       type: object
+//  *       required:
+//  *         - title
+//  *         - author
+//  *         - finished
+//  *       properties:
+//  *         id:
+//  *           type: string
+//  *           description: The auto-generated id of the book
+//  *         title:
+//  *           type: string
+//  *           description: The title of your book
+//  *         author:
+//  *           type: string
+//  *           description: The book author
+//  *         finished:
+//  *           type: boolean
+//  *           description: Whether you have finished reading the book
+//  *         createdAt:
+//  *           type: string
+//  *           format: date
+//  *           description: The date the book was added
+//  *       example:
+//  *         id: d5fE_asz
+//  *         title: The New Turing Omnibus
+//  *         author: Alexander K. Dewdney
+//  *         finished: false
+//  *         createdAt: 2020-03-10T04:05:06.157Z
+//  */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Dashboard
+ *   description: Routes for managing the dashboard
+ */
+
 /**
  * @swagger
  *
  * /dashboard:
  *   get:
+ *     tags: [Dashboard]
  *     description: Get dashboard metrics
  *     produces:
  *       - application/json
@@ -25,10 +68,10 @@ export const getDashboardMetrics = async (_: Request, res: Response): Promise<vo
                 stockQuantity: 'desc'
             }
         });
-        const salesSummary = await prisma.sales.findMany({
+        const salesSummary = await prisma.salesSummary.findMany({
             take: 5,
             orderBy: {
-                quantity: 'desc'
+                date: 'desc'
             }
         })
         const purchaseSummary = await prisma.purchaseSummary.findMany({
